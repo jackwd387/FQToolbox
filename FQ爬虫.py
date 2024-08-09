@@ -5,6 +5,7 @@ import parsel
 import _thread
 import os
 import time
+import re
 name = ''
 title_list = []
 item_id_list = []
@@ -37,6 +38,7 @@ def get_content(title,item_id):
         content=link_data.replace('<p>','\n').replace('</p>','\n')
         # print(content)
         #print(link_url)
+        title = re.sub(r"[\/\\\:\*\?\"\<\>\|]","_",title)#去掉非法字符
         with open('./'+ name +'/'+ title + '.txt', mode='w', encoding='utf-8') as f:
             f.write(title)
             f.write('\n\n')
